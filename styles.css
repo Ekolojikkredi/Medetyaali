@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+}
+
+.left-menu {
+    width: 30%;
+    padding: 20px;
+    background-color: #2a9d8f;
+    color: white;
+}
+
+.left-menu h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.left-menu ul {
+    list-style-type: none;
+}
+
+.left-menu ul li {
+    margin: 10px 0;
+}
+
+.left-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.left-menu ul li a:hover {
+    text-decoration: underline;
+}
+
+.right-menu {
+    width: 70%;
+    padding: 20px;
+    background-color: white;
+}
+
+.right-menu .info-section {
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #2a9d8f;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #21867a;
+}
+
+form {
+    margin-top: 20px;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+#studentData {
+    margin-top: 20px;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+h3 {
+    font-size: 22px;
+}
