@@ -1,0 +1,104 @@
+let totalWaste = 0; // Toplam atık kg
+let students = {}; // Öğrenci verileri
+
+// Atık türleri için puanlama
+const pointsSorted = {
+    plastik: 2,
+    cam: 3,
+    pil: 6,
+    elektronik: 5,
+    metal: 4,
+    kagit: 2,
+    yag: 5,
+    tekstil: 2
+};
+
+const pointsUnsorted = {
+    plastik: 1,
+    cam: 1,
+    pil: 2,
+    elektronik: 2,
+    metal: 1,
+    kagit: 1,
+    yag: 2,
+    tekstil: 1
+};
+
+// Öğrenci verisi kaydetme fonksiyonu
+function submitData() {
+    const wasteType = document.getElementById('wasteType').value;
+    const weight = parseFloat(document.getElementById('wasteWeight').value);
+    const sortingStatus = document.getElementById('sortingStatus').value;
+
+    // Puan hesaplama
+    let points = 0;
+    if (sortingStatus === "sorted") {
+        points = weight * (pointsSorted[wasteType] || 0);
+    } else if (sortingStatus === "unsorted") {
+        points = weight * (pointsUnsorted[wasteType] || 0);
+    }
+
+    // Toplam atık sayaç güncelleme
+    totalWaste += weight;
+    document.getElementById("totalWasteCounter").innerText = `${totalWaste} kg`;
+
+    // Öğrenci verisini güncelleme
+    const studentNumber = document.getElementById('studentNumber').value;
+    if (!students[studentNumber]) {
+        students[studentNumber] = { totalPoints: 0, wasteEntries: [] };
+    }
+    students[studentNumber].totalPoints += points;
+    students[studentNumber].wasteEntries.push({ wasteType, weight, points, sortingStatus });
+
+    alert(`Veri başarıyla kaydedildi. Kazanılan Puan: ${points}`);
+    console.log(students);
+}
+
+// Öğrenci verisini görüntüleme fonksiyonu
+function viewStudentData() {
+    const studentEmail = document.getElementById('viewStudentEmail').value;
+    const studentNumber = document.getElementById('viewStudentNumber').value;
+
+    // Öğrenci numarasına göre veri sorgulama
+    if (students[studentNumber]) {
+        const student = students[studentNumber];
+        let studentInfo = `<h3>Öğrenci Numarası: ${studentNumber}</h3>
+                           <p><strong>Toplam Puan:</strong> ${student.totalPoints}</p>
+                           <p><strong>Atık Girişleri:</strong></p>
+                           <ul>`;
+
+        student.wasteEntries.forEach(entry => {
+            studentInfo += `<li>
+                Tür: ${entry.wasteType}, 
+                Miktar: ${entry.weight} kg, 
+                Durum: ${entry.sortingStatus === "sorted" ? "Ayrıştırıldı" : "Ayrıştırılmadı"},
+                Kazanılan Puan: ${entry.points}
+            </li>`;
+        });
+
+        studentInfo += `</ul>`;
+        document.getElementById('studentData').innerHTML = studentInfo;
+    } else {
+        alert('Öğrenci bulunamadı!');
+        document.getElementById('studentData').innerHTML = '<p>Öğrenci verisi bulunamadı.</p>';
+    }
+}
+
+// Bilgileri değiştirmek için menüleri gösterme fonksiyonu
+function showInfo(section) {
+    const sections = document.querySelectorAll('.info-section');
+    sections.forEach(sec => sec.style.display = 'none');
+    
+    // Belirtilen bölümü göstermek
+    const activeSection = document.getElementById(section);
+    if (activeSection) {
+        activeSection.style.display = 'block';
+    } else {
+        alert("Geçersiz bölüm!");
+    }
+}
+
+// Sayfa yüklendiğinde ilk bölüm olarak 'ekolojikKredi'yi göster
+window.onload = function() {
+    showInfo('ekolojikKredi');
+};
