@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekolojik Kredi Sistemi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sol Menü: Bilgiler -->
+        <div class="left-menu">
+            <h2>Ekolojik Kredi Sistemi</h2>
+            <ul>
+                <li><a href="#" onclick="showInfo('ekolojikKredi')">Ekolojik Kredi Nedir?</a></li>
+                <li><a href="#" onclick="showInfo('geriDonusum')">Geri Dönüşüm Nedir?</a></li>
+                <li><a href="#" onclick="showInfo('bizeUlasin')">Bize Ulaşın</a></li>
+                <li><strong>Toplam Atık: <span id="totalWasteCounter">0</span> kg</strong></li>
+            </ul>
+        </div>
+
+        <!-- Sağ Menü: İşlemler -->
+        <div class="right-menu">
+            <div id="ekolojikKredi" class="info-section">
+                <h3>Ekolojik Kredi Nedir?</h3>
+                <p>Ekolojik Kredi Sistemi, okulların geri dönüşüm çalışmalarına katkı sağlamak için öğrencileri motive eder...</p>
+            </div>
+            <div id="geriDonusum" class="info-section">
+                <h3>Geri Dönüşüm Nedir?</h3>
+                <p>Geri dönüşüm, atıkların tekrar işlenip, yeniden kullanılmasını sağlayan bir süreçtir...</p>
+            </div>
+            <div id="bizeUlasin" class="info-section">
+                <h3>Bize Ulaşın</h3>
+                <p>Email: ekolojikkreditubitak@gmail.com</p>
+                <p>Telefon: +90 555 555 55 55</p>
+                <p>Okul: Torbalı Anadolu Lisesi, İzmir/Torbalı</p>
+            </div>
+
+            <div id="dataEntry">
+                <h2>Veri Girişi</h2>
+                <form id="dataEntryForm">
+                    <input type="password" id="schoolPassword" placeholder="Okul Şifresi" required><br>
+                    <input type="text" id="studentNumber" placeholder="Öğrenci Numarası" required><br>
+                    <input type="text" id="studentName" placeholder="Ad Soyad" required><br>
+                    <select id="wasteType" required>
+                        <option value="">Atık Türü Seçin</option>
+                        <option value="yag">Yağ</option>
+                        <option value="tekstil">Tekstil</option>
+                        <option value="pil">Pil</option>
+                        <option value="elektronik">Elektronik</option>
+                        <option value="metal">Metal</option>
+                        <option value="kagit">Kağıt</option>
+                        <option value="plastik">Plastik</option>
+                        <option value="cam">Cam</option>
+                    </select><br>
+                    <input type="number" id="wasteWeight" placeholder="Miktar (kg)" required><br>
+                    <select id="sortingStatus" required>
+                        <option value="">Ayrıştırma Durumu</option>
+                        <option value="sorted">Evet (Ayrıştırıldı)</option>
+                        <option value="unsorted">Hayır (Ayrıştırılmadı)</option>
+                    </select><br>
+                    <input type="text" id="recipient" placeholder="Teslim Alan Kişi (Ünvan)" required><br>
+                    <button type="button" onclick="submitData()">Veriyi Kaydet</button>
+                </form>
+            </div>
+
+            <div id="studentInfo">
+                <h2>Öğrenci Bilgilerini Görüntüle</h2>
+                <form id="viewStudentForm">
+                    <input type="text" id="viewStudentEmail" placeholder="E-posta" required><br>
+                    <input type="text" id="viewStudentNumber" placeholder="Öğrenci Numarası" required><br>
+                    <button type="button" onclick="viewStudentData()">Göster</button>
+                </form>
+                <div id="studentData"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
